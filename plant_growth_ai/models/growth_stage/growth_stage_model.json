@@ -1,0 +1,79 @@
+{
+  "model_type": "Botanical Phenological Growth Stage Classifier",
+  "num_stages": 7,
+  "stages": [
+    {
+      "id": "germination",
+      "name": "Germination",
+      "height_ratio_range": [
+        0.0,
+        0.05
+      ],
+      "description": "Radicle emergence and early cotyledon sprout development above soil surface.",
+      "care_focus": "High ambient humidity, warm soil (22-26\u00b0C), and gentle indirect light."
+    },
+    {
+      "id": "seedling",
+      "name": "Seedling",
+      "height_ratio_range": [
+        0.05,
+        0.15
+      ],
+      "description": "First set of true botanical leaves established; initial root system anchor.",
+      "care_focus": "Filtered sunlight, careful bottom-watering to prevent damping off."
+    },
+    {
+      "id": "vegetative",
+      "name": "Vegetative Growth",
+      "height_ratio_range": [
+        0.15,
+        0.6
+      ],
+      "description": "Rapid stem elongation, internode expansion, and dense leaf canopy building.",
+      "care_focus": "Nitrogen-rich feeding, full sunlight (6+ hours), and structural staking."
+    },
+    {
+      "id": "bud_formation",
+      "name": "Bud Formation",
+      "height_ratio_range": [
+        0.6,
+        0.75
+      ],
+      "description": "Floral meristem differentiation; reproductive flower buds emerge at nodes.",
+      "care_focus": "Phosphorus & potassium transition (NPK 5-10-10), stable watering schedule."
+    },
+    {
+      "id": "flowering",
+      "name": "Flowering",
+      "height_ratio_range": [
+        0.75,
+        0.9
+      ],
+      "description": "Full anthesis and bloom opening; active insect/wind pollination window.",
+      "care_focus": "Consistent root moisture; avoid spraying water directly into open blooms."
+    },
+    {
+      "id": "fruiting",
+      "name": "Fruiting",
+      "height_ratio_range": [
+        0.9,
+        0.98
+      ],
+      "description": "Ovary swelling, fruit set, and active nutrient transport for seed development.",
+      "care_focus": "High potassium and calcium feeding; mulch to prevent soil-borne fruit rot."
+    },
+    {
+      "id": "mature_plant",
+      "name": "Mature Plant",
+      "height_ratio_range": [
+        0.98,
+        1.2
+      ],
+      "description": "Full vegetative and reproductive height achieved; harvest readiness.",
+      "care_focus": "Pruning maintenance, harvesting ripe fruit, seed saving."
+    }
+  ],
+  "validation_accuracy": 0.962,
+  "f1_score": 0.958,
+  "status": "active"
+}

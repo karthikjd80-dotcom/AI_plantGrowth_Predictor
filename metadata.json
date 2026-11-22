@@ -1,0 +1,6 @@
+{
+  "name": "Plant Growth Predictor",
+  "description": "Upload a plant image to predict its growth trajectory over the next 14 days using AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

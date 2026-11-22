@@ -1,0 +1,7 @@
+plant_id,plant_species,plant_variety,observation_date,plant_age_days,height_cm,temperature_c,water_quantity_ml,sunlight_hours,soil_moisture,soil_type,health_status
+# Observation slots for chronological plant growth tracking (do not fabricate measurements)
+# Example slot format:
+# plant_tomato_01,tomato,Roma Hybrid,2026-10-01,1,2.1,24.5,120,6.5,7.2,loamy,healthy
+# plant_tomato_01,tomato,Roma Hybrid,2026-10-07,7,9.2,25.1,150,7.0,6.8,loamy,healthy
+# plant_tomato_01,tomato,Roma Hybrid,2026-10-15,15,18.4,26.0,180,6.8,6.5,loamy,healthy
+# plant_tomato_01,tomato,Roma Hybrid,2026-10-30,30,38.5,24.8,200,6.2,6.4,loamy,healthy

@@ -1,0 +1,178 @@
+.menu-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__item {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  touch-action: pan-y;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.menu__item:first-child {
+  border-top: none;
+}
+
+.menu__item:active {
+  opacity: 0.92;
+  transform: scale(0.992);
+}
+
+.menu__item-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2.7vh, 1.95rem);
+  letter-spacing: -0.02em;
+  padding: 0 1.25rem;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.menu__item-link:hover {
+  color: inherit;
+}
+
+.menu__item-link:focus:not(:focus-visible) {
+  color: inherit;
+}
+
+.marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(0, 101%, 0);
+  z-index: 2;
+  will-change: transform;
+}
+
+.marquee__inner-wrap {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: fit-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.marquee__part {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+.marquee span {
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: clamp(1.05rem, 2.6vh, 1.95rem);
+  line-height: 1;
+  padding: 0 0.8vw;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.marquee__img {
+  width: clamp(96px, 14vw, 180px);
+  height: clamp(34px, 4.6vh, 52px);
+  margin: 0.2em 1vw;
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: 50% 50%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   MOBILE & TOUCH SCREENS:
+   Always display the streaming marquee and hide static text,
+   so the live flowing animation is vibrant and active on mobile!
+   ============================================================ */
+.menu__item--touch .marquee {
+  transform: translate3d(0, 0%, 0) !important;
+  pointer-events: auto;
+}
+
+.menu__item--touch .menu__item-link {
+  display: none !important;
+}
+
+.menu__item--touch {
+  cursor: pointer;
+}
+
+.menu__item--touch .marquee span {
+  font-size: clamp(0.95rem, 2.4vh, 1.45rem);
+  padding: 0 1.2vw;
+}
+
+.menu__item--touch .marquee__img {
+  width: clamp(86px, 18vw, 140px);
+  height: clamp(30px, 4.2vh, 46px);
+  margin: 0.15em 1.2vw;
+  border-width: 1.5px;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 1024px) {
+  .menu__item .marquee {
+    transform: translate3d(0, 0%, 0) !important;
+    pointer-events: auto;
+  }
+  .menu__item .menu__item-link {
+    display: none !important;
+  }
+  .menu__item {
+    cursor: pointer;
+  }
+  .marquee span {
+    font-size: clamp(0.95rem, 2.4vh, 1.45rem);
+    padding: 0 1.2vw;
+  }
+  .marquee__img {
+    width: clamp(86px, 18vw, 140px);
+    height: clamp(30px, 4.2vh, 46px);
+    margin: 0.15em 1.2vw;
+    border-width: 1.5px;
+  }
+}

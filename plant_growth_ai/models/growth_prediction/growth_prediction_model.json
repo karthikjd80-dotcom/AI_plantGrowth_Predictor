@@ -1,0 +1,56 @@
+{
+  "dataset_records_evaluated": 69,
+  "best_model": "RandomForestRegressor",
+  "selected_metrics": {
+    "mae": 3.71,
+    "rmse": 6.04,
+    "r2_score": 0.894,
+    "hyperparameters": {
+      "n_estimators": 100,
+      "max_depth": 8,
+      "min_samples_split": 4
+    }
+  },
+  "model_comparison": {
+    "RandomForestRegressor": {
+      "mae": 3.71,
+      "rmse": 6.04,
+      "r2_score": 0.894,
+      "hyperparameters": {
+        "n_estimators": 100,
+        "max_depth": 8,
+        "min_samples_split": 4
+      }
+    },
+    "GradientBoostingRegressor": {
+      "mae": 3.79,
+      "rmse": 6.23,
+      "r2_score": 0.874,
+      "hyperparameters": {
+        "n_estimators": 120,
+        "learning_rate": 0.05,
+        "max_depth": 5
+      }
+    },
+    "RidgeRegressor": {
+      "mae": 5.12,
+      "rmse": 8.72,
+      "r2_score": 0.754,
+      "hyperparameters": {
+        "alpha": 1.0
+      }
+    }
+  },
+  "supported_species": [
+    "tomato",
+    "rose",
+    "potato",
+    "chili",
+    "brinjal",
+    "spinach",
+    "mint",
+    "coriander",
+    "basil"
+  ],
+  "trained_at": "2026-10-31 18:48:13"
+}

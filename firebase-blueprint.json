@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Represents a registered user profile in the plant health system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique user identifier" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "photoURL": { "type": "string", "description": "User profile avatar photo URL" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of account creation" }
+      },
+      "required": ["uid", "email"]
+    },
+    "PlantScanHistoryItem": {
+      "title": "PlantScanHistoryItem",
+      "description": "A saved plant health analysis scan and growth prediction record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Record identifier" },
+        "userId": { "type": "string", "description": "Owner user UID" },
+        "timestamp": { "type": "number", "description": "Timestamp in milliseconds" },
+        "image": { "type": "string", "description": "Plant leaf snapshot image URL or base64" },
+        "plantName": { "type": "string", "description": "Identified botanical plant name" },
+        "healthStatus": { "type": "string", "description": "Diagnosed health status" },
+        "diseaseName": { "type": "string", "description": "Diagnosed pathology name" },
+        "confidenceScore": { "type": "number", "description": "AI diagnostic confidence score percentage" }
+      },
+      "required": ["id", "userId", "timestamp", "plantName", "healthStatus"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Private user account profile information"
+    },
+    "/users/{userId}/scans/{scanId}": {
+      "schema": "PlantScanHistoryItem",
+      "description": "Saved plant scans and disease reports belonging to a specific user"
+    }
+  }
+}

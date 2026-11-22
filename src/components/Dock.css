@@ -1,0 +1,167 @@
+/* Monochrome Smoked-Glass Control Task Bar + Separate Circular Plus Button */
+
+.monochrome-dock-shell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.monochrome-dock-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(calc(100vw - 92px), 344px);
+  min-width: 248px;
+  height: 62px;
+  padding: 5px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.36) 0%,
+    rgba(244, 244, 245, 0.22) 100%
+  );
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 0 0 0.5px rgba(9, 9, 11, 0.09),
+    0 14px 36px -10px rgba(9, 9, 11, 0.14),
+    0 4px 12px -2px rgba(9, 9, 11, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(9, 9, 11, 0.06);
+  contain: layout style;
+  transform: translate3d(0, 0, 0);
+}
+
+.monochrome-dock-active {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 9, 11, 0.1) 0%,
+    rgba(9, 9, 11, 0.06) 100%
+  );
+  border: 1px solid rgba(9, 9, 11, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.monochrome-dock-plus {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.36) 0%,
+    rgba(244, 244, 245, 0.22) 100%
+  );
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 0 0 0.5px rgba(9, 9, 11, 0.09),
+    0 14px 36px -10px rgba(9, 9, 11, 0.14),
+    0 4px 12px -2px rgba(9, 9, 11, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(9, 9, 11, 0.06);
+  color: #09090b;
+  cursor: pointer;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.28s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.monochrome-dock-plus::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    120deg,
+    #ff1e8a 0%,
+    #ff5db1 30%,
+    #d946ef 55%,
+    #38bdf8 78%,
+    #ff2e93 100%
+  );
+  background-size: 260% 260%;
+  filter: blur(14px);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: rgb-pink-flow 3.4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.monochrome-dock-plus:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.54) 0%,
+    rgba(244, 244, 245, 0.36) 100%
+  );
+  border-color: rgba(255, 79, 168, 0.55);
+  box-shadow:
+    0 12px 30px -8px rgba(255, 30, 138, 0.34),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transform: translate3d(0, -2px, 0) scale(1.04);
+}
+
+.monochrome-dock-plus:hover::before,
+.monochrome-dock-plus:active::before,
+.monochrome-dock-plus:focus-visible::before {
+  opacity: 0.78;
+  transform: scale(1.06);
+  animation-play-state: running;
+}
+
+.monochrome-dock-plus:active {
+  transform: translate3d(0, 0, 0) scale(0.93);
+}
+
+.monochrome-dock-pill button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 640px) {
+  .monochrome-dock-shell {
+    gap: 8px;
+  }
+
+  .monochrome-dock-pill {
+    width: min(calc(100vw - 84px), 308px);
+    height: 58px;
+    padding: 4px;
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+  }
+
+  .monochrome-dock-active {
+    top: 4px;
+    bottom: 4px;
+  }
+
+  .monochrome-dock-plus {
+    width: 58px;
+    height: 58px;
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+  }
+}

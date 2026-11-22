@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>PlantGrowth AI — Monitor, Predict & Grow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <meta name="description" content="Track your plant's growth, analyze health, detect plant diseases, and predict future growth with AI-powered insights." />
+    <meta property="og:title" content="PlantGrowth AI — Monitor, Predict & Grow" />
+    <meta property="og:description" content="Track your plant's growth, analyze health, detect plant diseases, and predict future growth with AI-powered insights." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Safe storage shim for iframes, private browsing, and restricted environments
+      try {
+        var _testK = '__test_pg_storage__';
+        window.localStorage.setItem(_testK, _testK);
+        window.localStorage.removeItem(_testK);
+      } catch (e) {
+        var _memStore = {};
+        var _mockStorage = {
+          getItem: function(k) { return Object.prototype.hasOwnProperty.call(_memStore, k) ? _memStore[k] : null; },
+          setItem: function(k, v) { _memStore[k] = String(v); },
+          removeItem: function(k) { delete _memStore[k]; },
+          clear: function() { _memStore = {}; },
+          key: function(i) { return Object.keys(_memStore)[i] || null; },
+          get length() { return Object.keys(_memStore).length; }
+        };
+        try {
+          Object.defineProperty(window, 'localStorage', { value: _mockStorage, configurable: true, writable: true });
+          Object.defineProperty(window, 'sessionStorage', { value: _mockStorage, configurable: true, writable: true });
+        } catch(err) {}
+      }
+
+      // Safe environment shim for matchMedia across all mobile browsers & webviews
+      if (typeof window !== 'undefined' && (!window.matchMedia || typeof window.matchMedia !== 'function')) {
+        window.matchMedia = function(q) {
+          return {
+            matches: false,
+            media: q || '',
+            onchange: null,
+            addListener: function() {},
+            removeListener: function() {},
+            addEventListener: function() {},
+            removeEventListener: function() {},
+            dispatchEvent: function() { return false; },
+          };
+        };
+      }
+      if (typeof window !== 'undefined' && (typeof window.ResizeObserver === 'undefined')) {
+        window.ResizeObserver = class {
+          observe() {}
+          unobserve() {}
+          disconnect() {}
+        };
+      }
+      if (typeof window !== 'undefined' && (typeof window.IntersectionObserver === 'undefined')) {
+        window.IntersectionObserver = class {
+          observe() {}
+          unobserve() {}
+          disconnect() {}
+        };
+      }
+    </script>
+    <style>
+      /* Ensure clean initial rendering without flash */
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background-color: #f5f5f7;
+        color: #09090b;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      #root {
+        min-height: 100vh;
+        min-height: 100dvh;
+      }
+      .pg-boot-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        background: #f5f5f7;
+        color: #09090b;
+        text-align: center;
+        padding: 24px;
+      }
+      .pg-boot-badge {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: #09090b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 20px;
+        box-shadow: 0 12px 26px -8px rgba(9, 9, 11, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pg-boot-overlay" class="pg-boot-shell" aria-live="polite">
+      <div class="pg-boot-badge">P</div>
+      <div id="pg-boot-status" style="font-size: 13px; color: #52525b;">Loading workspace...</div>
+    </div>
+    <div id="root"></div>
+    <script>
+      (function () {
+        window.__PG_MARK_MOUNTED__ = function () {
+          window.__PG_APP_MOUNTED__ = true;
+          var overlay = document.getElementById('pg-boot-overlay');
+          if (overlay && overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+          }
+        };
+
+        function showBootRecovery(reason) {
+          if (window.__PG_APP_MOUNTED__) return;
+          var overlay = document.getElementById('pg-boot-overlay');
+          if (!overlay) return;
+          overlay.innerHTML =
+            '<div class="pg-boot-badge">P</div>' +
+            '<div style="font-weight:800;font-size:18px;">Unable to load PlantGrowth AI</div>' +
+            '<div style="font-size:13px;color:#456449;max-width:360px;line-height:1.5;">' +
+              (reason ? String(reason).slice(0, 160) : 'A module failed to initialize cleanly.') +
+            '</div>' +
+            '<button type="button" onclick="window.location.reload()" style="margin-top:6px;padding:10px 22px;border-radius:999px;border:none;background:#1c521b;color:#fff;font-weight:700;font-size:13px;cursor:pointer;">Reload Page</button>';
+        }
+
+        window.addEventListener('error', function (ev) {
+          if (window.__PG_APP_MOUNTED__) return;
+          var target = ev && ev.target;
+          if (target && target.tagName === 'SCRIPT') {
+            showBootRecovery('Failed to load application script module. Please reload.');
+            return;
+          }
+          var msg = (ev && ev.message) || '';
+          if (msg && !/ResizeObserver|Script error/i.test(msg)) {
+            showBootRecovery(msg);
+          }
+        }, true);
+
+        setTimeout(function () {
+          if (!window.__PG_APP_MOUNTED__) {
+            var st = document.getElementById('pg-boot-status');
+            if (st) st.textContent = 'Still loading modules... Refresh if this persists.';
+          }
+        }, 9000);
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
